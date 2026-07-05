@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curviva · 19 guiones de video — Navy Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mint: #76EFB1;
+  --ink: #070a09; --panel:#101513; --panel2:#151b18; --line:#24302a;
+  --txt:#e8efeb; --mut:#93a29b;
+  --h:#ffd166; --r:#76EFB1; --c:#7cc4ff; --gold:#f0c674;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--ink); color:var(--txt); font-family:'Archivo',system-ui,sans-serif; font-size:16px; line-height:1.55; }
+a { color:var(--mint); }
+.wrap { max-width:1160px; margin:0 auto; padding:0 28px; }
+
+.hero { border-bottom:1px solid var(--line); padding:64px 0 56px;
+  background:radial-gradient(900px 420px at 85% -10%, rgba(118,239,177,.10), transparent 60%),
+   repeating-linear-gradient(90deg, transparent 0 118px, rgba(118,239,177,.045) 118px 119px); }
+.kicker { font-family:'IBM Plex Mono',monospace; color:var(--mint); font-size:12px; letter-spacing:.22em; text-transform:uppercase; margin-bottom:16px; }
+h1 { font-weight:900; font-size:clamp(34px,5vw,58px); line-height:1.02; letter-spacing:-.02em; max-width:22ch; }
+h1 em { font-style:normal; color:var(--mint); }
+.hero .sub { margin-top:20px; max-width:70ch; color:var(--mut); font-size:17px; }
+.meta { margin-top:34px; display:flex; flex-wrap:wrap; gap:10px 26px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--mut); }
+.meta b { color:var(--txt); font-weight:600; }
+
+.nav { position:sticky; top:0; z-index:50; background:rgba(7,10,9,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+.nav .wrap { display:flex; gap:4px; overflow-x:auto; padding:10px 28px; }
+.nav a { font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.04em; color:var(--mut); text-decoration:none; padding:7px 12px; border-radius:999px; white-space:nowrap; border:1px solid transparent; }
+.nav a:hover { color:var(--mint); border-color:var(--line); }
+
+section { padding:56px 0; border-bottom:1px solid var(--line); }
+.sec-k { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--mint); margin-bottom:10px; }
+h2 { font-weight:800; font-size:clamp(24px,3vw,34px); letter-spacing:-.015em; margin-bottom:18px; }
+.lead { color:var(--mut); max-width:78ch; margin-bottom:26px; }
+.lead b, p b { color:var(--txt); }
+
+.rules { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
+.rule { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+.rule h4 { font-size:13px; color:var(--mint); font-family:'IBM Plex Mono',monospace; letter-spacing:.05em; text-transform:uppercase; margin-bottom:8px; }
+.rule p { font-size:14px; color:#c6d1cb; }
+
+.chip { display:inline-flex; align-items:center; gap:7px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.03em; color:var(--c); border:1px solid color-mix(in srgb, var(--c) 55%, transparent); border-radius:999px; padding:3px 11px; }
+.chip::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--c); }
+
+.level-head { display:flex; align-items:center; gap:14px; margin-bottom:8px; }
+.lv-mark { width:14px; height:38px; border-radius:4px; background:var(--lc); box-shadow:0 0 22px color-mix(in srgb, var(--lc) 55%, transparent); }
+.level-intro { color:var(--mut); max-width:82ch; margin:14px 0 32px; }
+
+.guion { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:0; margin-bottom:22px; overflow:hidden; }
+.guion-head { background:var(--panel2); padding:18px 24px; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; }
+.guion-head h3 { font-size:18px; font-weight:800; letter-spacing:-.01em; }
+.guion-num { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold); background:rgba(240,198,116,.12); padding:3px 10px; border-radius:5px; margin-right:10px; }
+.guion-body { padding:22px 24px 26px; }
+.guion-meta { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; padding-bottom:18px; border-bottom:1px dashed var(--line); }
+.guion-meta > div { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--mut); }
+.guion-meta b { display:block; color:var(--txt); font-size:13px; font-family:'Archivo',sans-serif; font-weight:600; margin-top:3px; }
+
+.tramo { padding:14px 0; border-bottom:1px dashed var(--line); }
+.tramo:last-of-type { border-bottom:none; }
+.tramo-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.tag { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.06em; padding:3px 8px; border-radius:5px; color:var(--ink); font-weight:700; }
+.tag.h { background:var(--h); }
+.tag.r { background:var(--r); }
+.tag.c { background:var(--c); }
+.tramo-time { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--mut); }
+.voz { background:rgba(255,255,255,.03); border-left:2px solid var(--mint); padding:10px 14px; margin:8px 0; border-radius:0 6px 6px 0; }
+.voz b { color:var(--mint); font-size:11px; font-family:'IBM Plex Mono',monospace; letter-spacing:.05em; text-transform:uppercase; display:block; margin-bottom:4px; }
+.voz p { color:#dde5e0; font-size:15px; font-style:italic; }
+.accion { background:rgba(255,255,255,.02); border-left:2px solid var(--gold); padding:10px 14px; margin:8px 0; border-radius:0 6px 6px 0; }
+.accion b { color:var(--gold); font-size:11px; font-family:'IBM Plex Mono',monospace; letter-spacing:.05em; text-transform:uppercase; display:block; margin-bottom:4px; }
+.accion p { color:#dde5e0; font-size:14px; }
+.retencion { background:rgba(124,196,255,.05); border-left:2px solid var(--c); padding:10px 14px; margin:8px 0; border-radius:0 6px 6px 0; }
+.retencion b { color:var(--c); font-size:11px; font-family:'IBM Plex Mono',monospace; letter-spacing:.05em; text-transform:uppercase; display:block; margin-bottom:4px; }
+.retencion p { color:#dde5e0; font-size:14px; }
+
+.copy-block { margin-top:18px; padding-top:16px; border-top:1px dashed var(--line); }
+.copy-block h5 { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--mut); margin-bottom:8px; }
+.copy-text { background:rgba(255,255,255,.03); padding:12px 14px; border-radius:8px; font-size:14px; color:#dde5e0; line-height:1.6; }
+.hashtags { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--mint); margin-top:8px; }
+
+.notas { margin-top:16px; padding:14px 16px; background:rgba(255,209,102,.06); border:1px solid rgba(255,209,102,.2); border-radius:10px; }
+.notas h5 { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--h); margin-bottom:8px; }
+.notas ul { margin-left:16px; }
+.notas li { font-size:13.5px; color:#dde5e0; margin-bottom:4px; }
+
+footer { padding:44px 0 64px; color:var(--mut); font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-align:center; }
+
+@media (max-width: 900px) {
+  .rules, .guion-meta { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+ <div class="wrap">
+  <p class="kicker">Curviva · 19 guiones · un formato = un guion plantilla</p>
+  <h1>Un guion ejecutable por cada <em>formato de anuncio</em>, listo para grabar.</h1>
+  <p class="sub">Del sistema Navy de 54 ideas, bajamos aquí un guion completo por cada uno de los 19 formatos que tienen sentido en Curviva. Cada guion es plantilla: elige la idea que quieras dentro del formato y sigue esta misma estructura. Voz literal, acciones, cierre y notas de producción para que Marina o el equipo Curviva pueda rodarlo directo.</p>
+  <div class="meta">
+   <span><b>Marca</b> · Curviva</span>
+   <span><b>Preparado por</b> · Navy Marketing</span>
+   <span><b>Formato</b> · 19 guiones plantilla</span>
+   <span><b>Vertical</b> · 9:16 · Reels + TikTok</span>
+  </div>
+ </div>
+</header>
+
+<nav class="nav"><div class="wrap">
+ <a href="#m1">Aún no busca solución</a>
+ <a href="#m2">Reconoce el problema</a>
+ <a href="#m3">Compara soluciones</a>
+ <a href="#m4">Ya conoce Curviva</a>
+ <a href="#m5">Lista para comprar</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ============ MOMENTO 1 ============ -->
+<section id="m1" style="--lc:#5B8DEF">
+ <div class="level-head"><span class="lv-mark"></span><h2>Momento 1 · Aún no busca solución</h2></div>
+ <p class="level-intro">Cinco formatos para llegar a mujeres que ni siquiera están buscando una solución mejor. El objetivo aquí no es rematar venta: es que descubran Curviva a buen coste. Los cierres son suaves, sin oferta, sin urgencia.</p>
+
+ <!-- ========= GUION 1 ========= -->
+ <div class="guion" style="border-color:var(--mint);">
+  <div class="guion-head" style="background:rgba(118,239,177,.08);">
+   <h3><span class="guion-num">01</span>Contenido informativo (formato artículo)</h3>
+   <span class="chip" style="--c:#5B8DEF">Aún no busca solución</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(118,239,177,.10); border:1px solid var(--mint); border-radius:10px; padding:14px 18px; margin-bottom:20px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:20px; line-height:1;">🔄</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mint); margin-bottom:6px; font-weight:700;">Ya está programado para orgánico · reutilizar como ad</p>
+     <p style="font-size:14px; color:#dde5e0;">Este vídeo ya está bajado a nivel guion en el <b>planificador orgánico de Curviva</b>, con fecha de publicación el <b>lunes 6 de julio</b> (Instagram + TikTok). Curviva lo va a rodar igualmente. <b>Aprovechadlo también como ad</b>: mismo guion, mismo rodaje, mismo material. No hace falta grabar nada nuevo para cubrir este formato.</p>
+    </div>
+   </div>
+
+   <div class="guion-meta">
+    <div>Idea base<b>No es normal (marcas del sujetador)</b></div>
+    <div>Duración<b>30-32 segundos</b></div>
+    <div>Perfil<b>Laia a cámara</b></div>
+    <div>Título pantalla<b>NO ES NORMAL</b></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag h">GANCHO</span><span class="tramo-time">0-4 s</span></div>
+    <div class="accion"><b>Acción</b><p>Primer plano a cámara, Laia señalando una marca visible del sujetador en la piel (hombro, espalda o costado).</p></div>
+    <div class="voz"><b>Voz de Laia</b><p>"Nos han hecho creer que esto es normal. Y no lo es."</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">DESARROLLO DEL PROBLEMA</span><span class="tramo-time">4-10 s</span></div>
+    <div class="voz"><b>Voz</b><p>"La marca que te deja el sujetador en la piel al final del día está causada por la falta de circulación de la sangre. Y eso, aunque lo hayamos normalizado, no es bueno para tu salud."</p></div>
+    <div class="accion"><b>Acción</b><p>Sigue a cámara, tono cercano. Mientras habla, zoom o inserto de b-roll de otra marca en la piel (espalda, hombro, debajo del pecho).</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">MANIFIESTO</span><span class="tramo-time">10-15 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Desde siempre nos han metido en la cabeza que para presumir hay que sufrir. Y yo nunca he estado de acuerdo con eso."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a plano medio, tono seguro. Aquí entra la línea de identidad de la marca.</p></div>
+    <div class="retencion"><b>Qué mantiene la atención</b><p>El pivote del problema al manifiesto engancha porque cambia el ángulo: no vende, cuestiona algo asumido. Y da a la creadora una posición clara con la que la clienta se identifica.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">REVEAL DEL PRODUCTO</span><span class="tramo-time">15-20 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Por eso desde hace años uso esto: las pezoneras de Curviva."</p></div>
+    <div class="accion"><b>Acción</b><p>Muestra las pezoneras en mano, luz bonita, plano cerrado del producto.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">DEMO + BENEFICIOS</span><span class="tramo-time">20-28 s</span></div>
+    <div class="voz"><b>Voz (en off)</b><p>"No aprietan, no dejan marca, no se ven bajo la ropa. Y aguanto todo el día sin sentir que llevo nada puesto."</p></div>
+    <div class="accion"><b>Acción</b><p>Ella se las coloca (o muestra cómo se colocan, con jump cut si es necesario). La voz en off entra encima.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag c">CIERRE DE IDENTIDAD</span><span class="tramo-time">28-32 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Para presumir no hay que sufrir. Y por eso existe Curviva."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a cámara, sonrisa tranquila. Congelado 1 segundo con el nombre "Curviva" en el subtítulo. Sin flechas, sin "enlace en la bio", sin llamada a comentar. Solo posicionamiento.</p></div>
+   </div>
+
+   <div style="background:rgba(255,209,102,.06); border:1px solid rgba(255,209,102,.25); border-radius:10px; padding:14px 18px; margin-top:14px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:18px; line-height:1;">💡</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--h); margin-bottom:6px; font-weight:700;">Diferencia con la versión orgánica</p>
+     <p style="font-size:14px; color:#dde5e0;">La versión que sale en el planificador orgánico cierra con <b>"Comenta CURVIVA y te mando el enlace"</b>. En el <b>orgánico funciona</b> porque el perfil ya está calentado, la ficha viene de un público que ya nos sigue. Como <b>ad en frío</b> ese CTA pide demasiado: una desconocida no comenta un producto que no le ha resuelto un problema todavía. Cambiamos el cierre por un remate de identidad. El objetivo del ad es <b>que la marca se quede</b>, no que compren hoy.</p>
+    </div>
+   </div>
+
+   <div class="copy-block">
+    <h5>Descripción del post (versión ad, distinta al orgánico)</h5>
+    <div class="copy-text">Nos han hecho creer que la marca del sujetador al final del día es normal. Y no lo es. Para presumir no hay que sufrir.</div>
+    <p class="hashtags">#curviva #parapresumir #comodidad #paraella</p>
+   </div>
+  </div>
+ </div>
+
+ <!-- ========= GUION 2 ========= -->
+ <div class="guion" style="border-color:var(--mint);">
+  <div class="guion-head" style="background:rgba(118,239,177,.08);">
+   <h3><span class="guion-num">02</span>Historia personal</h3>
+   <span class="chip" style="--c:#5B8DEF">Aún no busca solución</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(118,239,177,.10); border:1px solid var(--mint); border-radius:10px; padding:14px 18px; margin-bottom:20px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:20px; line-height:1;">🔄</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mint); margin-bottom:6px; font-weight:700;">Ya está programado para orgánico · reutilizar como ad</p>
+     <p style="font-size:14px; color:#dde5e0;">Este vídeo ya está bajado a nivel guion en el <b>planificador orgánico de Curviva</b>, con fecha de publicación el <b>martes 8 de julio</b> (Instagram + TikTok). Curviva lo va a rodar igualmente. <b>Aprovechadlo también como ad</b>: mismo guion, mismo rodaje, mismo material. No hace falta grabar nada nuevo para cubrir este formato.</p>
+    </div>
+   </div>
+
+   <div class="guion-meta">
+    <div>Idea base<b>GRWM express · cena en 10 minutos</b></div>
+    <div>Duración<b>42-47 segundos</b></div>
+    <div>Perfil<b>Laia a cámara</b></div>
+    <div>Título pantalla<b>CENA EN 10 MIN</b></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag h">HOOK</span><span class="tramo-time">0-4 s</span></div>
+    <div class="accion"><b>Acción</b><p>Laia a cámara, medio arreglada (a medio maquillar o con el pelo a medias), gesto un poco de agobio simpático. Corte rápido a plano del vestido colgado o encima de la cama.</p></div>
+    <div class="voz"><b>Voz de Laia</b><p>"Tengo una cena en 10 minutos, así que get ready with me versión express."</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">SETUP + PROBLEMA</span><span class="tramo-time">4-14 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Quiero ponerme este vestido pero tiene un escote bastante pronunciado. Y yo, teniendo el pecho pequeño, con estos escotes siempre me queda como… muy vacío arriba."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a plano medio, mientras se maquilla rápido, busca ropa que ponerse. B-roll: ella mirándose el escote del vestido en el espejo, gesto de "a ver cómo lo hago".</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">REVEAL DEL EXPERIMENTO</span><span class="tramo-time">14-20 s</span></div>
+    <div class="voz"><b>Voz</b><p>"El otro día una amiga me habló de este sujetador de Curviva. Justo me lo dejó y hoy voy a hacer el experimento."</p></div>
+    <div class="accion"><b>Acción</b><p>Tono cómplice, como confesión rápida. Muestra el sujetador a cámara, plano cerrado.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">PRUEBA EN TIEMPO REAL</span><span class="tramo-time">20-32 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Dios chicas, estoy flipando. No me aprieta nada, se coloca súper fácil. No se mueve para nada. Es que no tengo la sensación de llevar sujetador."</p></div>
+    <div class="accion"><b>Acción</b><p>Ella se lo pone (jump cut o mostrando cómo queda ajustado bajo una camiseta ancha, sin enseñar de más). Reacción genuina mientras se lo coloca. B-roll: ella moviéndose, ajustando los tirantes, mirándose en el espejo con cara de "no me lo esperaba".</p></div>
+    <div class="retencion"><b>Qué mantiene la atención</b><p>La reacción en tiempo real vale más que una promesa escrita. Al ser una prueba genuina y no un anuncio, quien lo ve baja la guardia. El "estoy flipando" desde la primera colocación hace que la audiencia se quede a ver el resultado.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">REVEAL FINAL</span><span class="tramo-time">32-42 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Chicas. Es que parece otro escote. Mirad el cambio."</p></div>
+    <div class="accion"><b>Acción</b><p>Jump cut al look completo. Vestido puesto, plano espejo o cuerpo entero. Cara de sorpresa genuina. Se mueve, se coloca el vestido, se mira desde varios ángulos. Mostrar antes y después.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag c">CIERRE DE IDENTIDAD</span><span class="tramo-time">42-47 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Yo pensé que estos vestidos no eran para mí. Y no lo eran, hasta que llegó Curviva."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a plano cercano, sonrisa tranquila. Congelado 1 segundo con el nombre "Curviva" en el subtítulo. Sin "comenta CENA", sin enlace en la bio. Solo posicionamiento.</p></div>
+   </div>
+
+   <div style="background:rgba(255,209,102,.06); border:1px solid rgba(255,209,102,.25); border-radius:10px; padding:14px 18px; margin-top:14px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:18px; line-height:1;">💡</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--h); margin-bottom:6px; font-weight:700;">Diferencia con la versión orgánica</p>
+     <p style="font-size:14px; color:#dde5e0;">La versión orgánica cierra con <b>"Si tú también tienes vestidos aparcados por lo mismo, comenta CENA y te mando el enlace"</b>. En el <b>orgánico funciona</b> porque el perfil ya está calentado y la keyword CENA está integrada en ManyChat. Como <b>ad en frío</b> ese CTA pide comentar un producto que la desconocida acaba de descubrir. Cambiamos el cierre por el aprendizaje personal: "yo pensé que no eran para mí, hasta que llegó Curviva". Sigue siendo historia personal, cierra con marca, no pide compra.</p>
+    </div>
+   </div>
+
+   <div class="copy-block">
+    <h5>Descripción del post (versión ad, distinta al orgánico)</h5>
+    <div class="copy-text">Tengo una cena en 10 minutos y este vestido llevaba tiempo aparcado por el escote. Get ready with me express.</div>
+    <p class="hashtags">#getreadywithme #invitadaperfecta #vestidoescote #curviva</p>
+   </div>
+  </div>
+ </div>
+
+ <!-- ========= GUION 3 ========= -->
+ <div class="guion" style="border-color:var(--mint);">
+  <div class="guion-head" style="background:rgba(118,239,177,.08);">
+   <h3><span class="guion-num">03</span>Producto en la vida real</h3>
+   <span class="chip" style="--c:#5B8DEF">Aún no busca solución</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(118,239,177,.10); border:1px solid var(--mint); border-radius:10px; padding:14px 18px; margin-bottom:20px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:20px; line-height:1;">🔄</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mint); margin-bottom:6px; font-weight:700;">Ya está programado para orgánico · reutilizar como ad</p>
+     <p style="font-size:14px; color:#dde5e0;">Este vlog ya está bajado a nivel guion en el <b>planificador orgánico de Curviva</b>, con fecha de publicación el <b>sábado 19 de julio</b> (Instagram + TikTok). Curviva lo va a rodar igualmente. <b>Aprovechadlo también como ad</b>: mismo guion, mismo rodaje, mismo material. Un solo día de rodaje cubre el vlog orgánico + este creativo para paid.</p>
+    </div>
+   </div>
+
+   <div class="guion-meta">
+    <div>Idea base<b>Vlog 24h · poniendo a prueba las pezoneras</b></div>
+    <div>Duración<b>75-90 segundos</b></div>
+    <div>Perfil<b>Laia + b-roll día completo</b></div>
+    <div>Título pantalla<b>24 HORAS PROBANDO</b></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag h">INTRO</span><span class="tramo-time">0-5 s</span></div>
+    <div class="accion"><b>Acción</b><p>Laia a cámara desde la cama, recién levantada, en pijama. Muestra las pezoneras rápido.</p></div>
+    <div class="voz"><b>Voz</b><p>"Poniendo a prueba las pezoneras de Curviva durante 24 horas."</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">ESCENA 1 · MAÑANA / PLAYA</span><span class="tramo-time">5-20 s</span></div>
+    <div class="voz"><b>Voz (en off)</b><p>"Empiezo el día con un bikini para ir a la playa. Aquí lo importante es que no se despeguen con el agua y el sudor."</p></div>
+    <div class="accion"><b>Acción</b><p>Se coloca las pezoneras (jump cut, sin enseñar de más). B-roll rápido: bikini puesto, andando por la calle, playa, dentro del agua, tomando el sol. Micro plano: se toca el pecho para comprobar que aguantan, gesto de "ok, siguen ahí".</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">ESCENA 2 · MEDIODÍA / COMIDA</span><span class="tramo-time">20-35 s</span></div>
+    <div class="voz"><b>Voz (en off)</b><p>"Después me cambio para ir a comer con amigas a un chiringuito. Cambio de bikini a ropa normal, sin quitármelas."</p></div>
+    <div class="accion"><b>Acción</b><p>Cambio de outfit (jump cut, aparece con look de comida casual, top ajustado o vestido). B-roll: sirviéndose comida, riendo con amigas, plano medio en la mesa, brindis.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">ESCENA 3 · TARDE / DUCHA Y CAMBIO</span><span class="tramo-time">35-45 s</span></div>
+    <div class="voz"><b>Voz (en off)</b><p>"Vuelvo a casa, me ducho y me cambio. Las pezoneras se pueden quitar y volver a colocar, pero también aguantan varias horas seguidas sin problema."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a la ducha (sin enseñar nada, plano cerrado del grifo o de los pies). B-roll: albornoz, pelo mojado, secando, poniendo top nuevo para el afterwork. Detalle: se ve cómo se recoloca sin problema.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">ESCENA 4 · TARDE-NOCHE / TOMAR ALGO</span><span class="tramo-time">45-58 s</span></div>
+    <div class="voz"><b>Voz (en off)</b><p>"Salgo a tomar algo con los de siempre. Aquí llevo un top más ajustado, con transparencia. Zero marca de sujetador."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a un plano en una terraza, bar o café. B-roll: risas con amigos, cañas, planos de detalle del top ajustado, ella moviéndose.</p></div>
+    <div class="retencion"><b>Qué mantiene la atención</b><p>El formato "reto de 24 horas" es adictivo por su promesa cerrada: la audiencia se queda porque quiere ver cómo acaba el reto. Cada escena renueva la expectativa: "¿va a aguantar en la siguiente situación?".</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">ESCENA 5 · NOCHE / CENA Y FIESTA</span><span class="tramo-time">58-75 s</span></div>
+    <div class="voz"><b>Voz (en off)</b><p>"Y para acabar el día, cena y salir. Con un vestido con escote y espalda al aire. El momento de la verdad."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a Laia arreglada, plano espejo o pasillo, look de noche. B-roll: llegando al restaurante, cena, después bailando en un bar, moviéndose mucho.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag c">REVIEW + CIERRE DE IDENTIDAD</span><span class="tramo-time">75-90 s</span></div>
+    <div class="accion"><b>Acción</b><p>Corte al día siguiente, Laia con luz de mañana, cara sin maquillar, tono review honesta.</p></div>
+    <div class="voz"><b>Voz a cámara</b><p>"Chicas, review. Me han durado todo el día. Playa, agua, ducha, cambios de outfit, bailando toda la noche. Aguantaron perfecto. No se despegaron, no se movieron, y lo mejor: no las noté en ningún momento."</p></div>
+    <div class="voz"><b>Voz (cierre)</b><p>"Playa, agua, ducha, cambios, baile. Y ni un momento las noté. Eso es Curviva."</p></div>
+   </div>
+
+   <div style="background:rgba(255,209,102,.06); border:1px solid rgba(255,209,102,.25); border-radius:10px; padding:14px 18px; margin-top:14px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:18px; line-height:1;">💡</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--h); margin-bottom:6px; font-weight:700;">Diferencia con la versión orgánica</p>
+     <p style="font-size:14px; color:#dde5e0;">La versión orgánica cierra con <b>"Si queréis probarlas, comenta CURVIVA y os mando el enlace"</b>. En el <b>orgánico funciona</b> porque quien ha visto los 75 segundos de review honesta ya es una audiencia calentada, lista para pedir el enlace. Como <b>ad en Momento 1</b>, aún no vendemos: dejamos que la review sea la prueba y rematamos con el nombre de la marca. La conversión se rescatará en retargeting con guiones de Momento 5.</p>
+    </div>
+   </div>
+
+   <div class="copy-block">
+    <h5>Descripción del post (versión ad, distinta al orgánico)</h5>
+    <div class="copy-text">Poniendo a prueba las pezoneras de Curviva durante 24 horas. Playa, comida, ducha, cañas, cena y fiesta. Review honesta al día siguiente.</div>
+    <p class="hashtags">#24hchallenge #curviva #pezoneras #reviewhonesta</p>
+   </div>
+  </div>
+ </div>
+
+ <!-- ========= GUION 5 ========= -->
+ <div class="guion" style="border-color:var(--mint);">
+  <div class="guion-head" style="background:rgba(118,239,177,.08);">
+   <h3><span class="guion-num">05</span>Contenido educativo</h3>
+   <span class="chip" style="--c:#5B8DEF">Aún no busca solución</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(118,239,177,.10); border:1px solid var(--mint); border-radius:10px; padding:14px 18px; margin-bottom:20px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:20px; line-height:1;">🔄</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mint); margin-bottom:6px; font-weight:700;">Ya está programado para orgánico · reutilizar como ad</p>
+     <p style="font-size:14px; color:#dde5e0;">Este vídeo ya está bajado a nivel guion en el <b>planificador orgánico de Curviva</b>, con fecha de publicación el <b>lunes 7 de julio</b> (Instagram + TikTok). Curviva lo va a rodar igualmente. <b>Aprovechadlo también como ad</b>: mismo guion, mismo rodaje, mismo material. No hace falta grabar nada nuevo para cubrir este formato.</p>
+    </div>
+   </div>
+
+   <div class="guion-meta">
+    <div>Idea base<b>3 motivos para dejar de usar sujetador</b></div>
+    <div>Duración<b>37 segundos</b></div>
+    <div>Perfil<b>Laia a cámara</b></div>
+    <div>Título pantalla<b>3 MOTIVOS</b></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag h">HOOK</span><span class="tramo-time">0-3 s</span></div>
+    <div class="accion"><b>Acción</b><p>Primer plano a cámara, tono directo y con seguridad.</p></div>
+    <div class="voz"><b>Voz de Laia</b><p>"3 motivos por los que deberías dejar de usar sujetador. El último afecta a tu salud."</p></div>
+    <div class="retencion"><b>Qué mantiene la atención</b><p>La estructura de lista con "el último afecta a tu salud" es un gancho clásico que retiene por curiosidad garantizada. Nadie que ya use sujetador se va antes de oír el motivo 3.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">MOTIVO 1 · CÓMO SE VE</span><span class="tramo-time">3-10 s</span></div>
+    <div class="voz"><b>Voz (a cámara)</b><p>"Motivo uno: se marca por fuera de la ropa."</p></div>
+    <div class="voz"><b>Voz (en off, sobre b-roll)</b><p>"Y no, no es que ese top no te quede bien. Es que llevas debajo algo que no debería verse."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a b-roll: Laia con un top ajustado blanco, se ve el sujetador marcado por dentro (tirantes, aros, borde).</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">MOTIVO 2 · RENUNCIAS</span><span class="tramo-time">10-17 s</span></div>
+    <div class="voz"><b>Voz (a cámara)</b><p>"Motivo dos: te hace renunciar a la ropa que te gusta."</p></div>
+    <div class="voz"><b>Voz (en off, sobre b-roll)</b><p>"Escotes imposibles, tops transparentes, vestidos con la espalda al aire. Llevas media vida diciendo que no a la ropa que sí querías ponerte."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a b-roll: Laia delante del armario, coge un vestido con escote, gesto de "no puedo ponerme esto", lo devuelve a la percha.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">MOTIVO 3 · SALUD</span><span class="tramo-time">17-25 s</span></div>
+    <div class="voz"><b>Voz (a cámara, tono más serio, bajando el ritmo)</b><p>"Y el motivo tres, el que casi nadie te cuenta: tu salud."</p></div>
+    <div class="voz"><b>Voz (en off, sobre b-roll)</b><p>"Esa marca roja que te deja al final del día está causada por la falta de circulación de la sangre. Lo llevamos normalizando toda la vida, pero no es bueno para tu cuerpo."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a b-roll: plano cerrado a la marca roja del sujetador en la piel al final del día (hombro o debajo del pecho).</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">MANIFIESTO + REVEAL</span><span class="tramo-time">25-33 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Yo dejé de usarlos hace años. Y para las veces que no me apetece ir sin nada y quiero sentirme un poco más segura, uso las pezoneras de Curviva. No aprietan, no dejan marca, y las llevo puestas todo el día sin sentir que llevo nada."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a cámara, plano medio, tono natural. Plano cerrado del producto en la mano mientras habla.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag c">CIERRE DE IDENTIDAD</span><span class="tramo-time">33-37 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Se ve. Te limita. Y no es bueno para ti. Por eso existe Curviva."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a cámara, sonrisa tranquila. Congelado 1 segundo con "Curviva" en el subtítulo. Sin "comenta CURVIVA", sin enlace en la bio.</p></div>
+   </div>
+
+   <div style="background:rgba(255,209,102,.06); border:1px solid rgba(255,209,102,.25); border-radius:10px; padding:14px 18px; margin-top:14px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:18px; line-height:1;">💡</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--h); margin-bottom:6px; font-weight:700;">Diferencia con la versión orgánica</p>
+     <p style="font-size:14px; color:#dde5e0;">La versión orgánica cierra con <b>"Comenta CURVIVA y te mando el enlace a las que yo uso"</b>. En el <b>orgánico funciona</b> porque el perfil ya está calentado y la keyword CURVIVA activa ManyChat. Como <b>ad en Momento 1</b>, cambiamos el cierre por un remate que recapitula los 3 motivos + marca. La conversión se rescatará después en retargeting con guiones de Momento 5.</p>
+    </div>
+   </div>
+
+   <div class="copy-block">
+    <h5>Descripción del post (versión ad, distinta al orgánico)</h5>
+    <div class="copy-text">3 motivos por los que deberías dejar de usar sujetador. El último afecta a tu salud, y casi nadie te lo cuenta.</div>
+    <p class="hashtags">#sinsujetador #curviva #saludfemenina #pezoneras</p>
+   </div>
+  </div>
+ </div>
+
+</section>
+
+<!-- ============ MOMENTO 2 ============ -->
+<section id="m2" style="--lc:#3FB6D9">
+ <div class="level-head"><span class="lv-mark"></span><h2>Momento 2 · Reconoce el problema</h2></div>
+ <p class="level-intro">Cuatro formatos para mujeres que ya saben que tienen el problema. Aquí vive lo que más vende hoy en Curviva. El objetivo es replicar los ángulos ganadores y abrir a públicos nuevos como pecho grande y piel sensible.</p>
+
+ <!-- ========= GUION 6 ========= -->
+ <div class="guion" style="border-color:var(--mint);">
+  <div class="guion-head" style="background:rgba(118,239,177,.08);">
+   <h3><span class="guion-num">06</span>El problema y su solución</h3>
+   <span class="chip" style="--c:#3FB6D9">Reconoce el problema</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(118,239,177,.10); border:1px solid var(--mint); border-radius:10px; padding:14px 18px; margin-bottom:20px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:20px; line-height:1;">🔄</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mint); margin-bottom:6px; font-weight:700;">Ya está programado para orgánico · reutilizar como ad</p>
+     <p style="font-size:14px; color:#dde5e0;">Este vídeo ya está bajado a nivel guion en el <b>planificador orgánico de Curviva</b>, con fecha de publicación el <b>lunes 14 de julio</b> (Instagram + TikTok). Curviva lo va a rodar igualmente. <b>Aprovechadlo también como ad</b>: mismo guion, mismo rodaje, mismo material. No hace falta grabar nada nuevo para cubrir este formato.</p>
+    </div>
+   </div>
+
+   <div class="guion-meta">
+    <div>Idea base<b>Si ya no llevas sujetador (camiseta transparente)</b></div>
+    <div>Duración<b>33 segundos</b></div>
+    <div>Perfil<b>Laia a cámara</b></div>
+    <div>Título pantalla<b>SIN SUJETADOR</b></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag h">HOOK</span><span class="tramo-time">0-5 s</span></div>
+    <div class="accion"><b>Acción</b><p>Laia a cámara, tono directo y cercano.</p></div>
+    <div class="voz"><b>Voz de Laia</b><p>"Si eres de las que ya no llevas sujetador porque te sientes más cómoda pero hay camisetas con las que acabas volviendo a ponértelo porque se transparentan los pezones, este vídeo es para ti."</p></div>
+    <div class="retencion"><b>Qué mantiene la atención</b><p>El hook selecciona a la clienta perfecta desde el segundo cero. Cualquier mujer que se sienta identificada con "ya no llevo sujetador pero hay camisetas que me obligan a volver" no puede dejar de ver el resto.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">SETUP DEL PROBLEMA</span><span class="tramo-time">5-11 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Nos ha pasado a todas. Te compras una camiseta blanca, un top de tela fina… no te sientes cómoda y al final acabas volviendo al sujetador."</p></div>
+    <div class="accion"><b>Acción</b><p>Sigue a cámara, tono más cómplice. Micro cortes de b-roll: camiseta blanca sobre la cama, top fino colgado.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">REVEAL SOLUCIÓN</span><span class="tramo-time">11-19 s</span></div>
+    <div class="voz"><b>Voz</b><p>"La solución existe, y es esta: las pezoneras de Curviva. Se colocan sobre el pezón, no se ven bajo la ropa por muy fina que sea, y no tienes que renunciar a la comodidad de no llevar sujetador."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelve a plano medio, muestra las pezoneras en la mano. Plano cerrado del producto.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">DEMO</span><span class="tramo-time">19-28 s</span></div>
+    <div class="voz"><b>Voz (en off)</b><p>"No aprietan, no se despegan, y aguantan hasta 8 horas puestas. Puedes hacer tu día normal sin estar pendiente del escote, la tela o el frío."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a Laia con una camiseta blanca fina ajustada puesta, plano medio. Se mueve, se gira, alza los brazos, camina hacia cámara.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag c">CIERRE DE IDENTIDAD</span><span class="tramo-time">28-33 s</span></div>
+    <div class="voz"><b>Voz</b><p>"No renunciar a la comodidad. No renunciar a la camiseta. Eso es Curviva."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a cámara, tono cercano, sonrisa tranquila. Congelado 1 segundo con el nombre "Curviva" en el subtítulo. Sin "comenta CURVIVA", sin enlace en la bio.</p></div>
+   </div>
+
+   <div style="background:rgba(255,209,102,.06); border:1px solid rgba(255,209,102,.25); border-radius:10px; padding:14px 18px; margin-top:14px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:18px; line-height:1;">💡</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--h); margin-bottom:6px; font-weight:700;">Diferencia con la versión orgánica</p>
+     <p style="font-size:14px; color:#dde5e0;">La versión orgánica cierra con <b>"Si quieres probar las que yo uso, comenta CURVIVA y te paso el enlace"</b>. En el <b>orgánico funciona</b> porque la audiencia ya nos sigue: la keyword CURVIVA activa ManyChat y les llega el enlace directo. Como <b>ad en Momento 2</b>, aunque el público ya reconoce el problema, mantenemos la coherencia de no vender en la primera toma de contacto. Cerramos con el manifiesto de la marca ("no renunciar a la comodidad, no renunciar a la camiseta"). La conversión se rescatará después en retargeting con guiones de Momento 5.</p>
+    </div>
+   </div>
+
+   <div class="copy-block">
+    <h5>Descripción del post (versión ad, distinta al orgánico)</h5>
+    <div class="copy-text">Si ya no llevas sujetador porque estás más cómoda pero hay camisetas que te obligan a volver a ponértelo… existe una solución. No renunciar a la comodidad. No renunciar a la camiseta.</div>
+    <p class="hashtags">#sinsujetador #pezoneras #curviva #camisetablanca</p>
+   </div>  </div>
+ </div>
+
+ <!-- ========= GUION 8 ========= -->
+ <div class="guion">
+  <div class="guion-head">
+   <h3><span class="guion-num">08</span>Rompe creencias</h3>
+   <span class="chip" style="--c:#3FB6D9">Reconoce el problema</span>
+  </div>
+  <div class="guion-body">
+   <div class="guion-meta">
+    <div>Idea base<b>Pecho grande + vestido con espalda al aire</b></div>
+    <div>Duración<b>42 segundos</b></div>
+    <div>Perfil<b>Creadora con pecho grande (casting)</b></div>
+    <div>Título pantalla<b>ESPALDA AL AIRE</b></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag h">HOOK</span><span class="tramo-time">0-8 s</span></div>
+    <div class="accion"><b>Acción</b><p>Chica con pecho grande, ya con vestido de espalda al aire puesto. Plano lateral o de tres cuartos que enseñe la espalda descubierta y a la vez el volumen de pecho de frente. Se gira una vez hacia cámara, gesto natural.</p></div>
+    <div class="voz"><b>Voz</b><p>"Tienes el pecho grande y quieres ponerte vestidos como este, y no sabes qué ponerte porque todas las pezoneras que has probado se despegan. A mí me pasaba lo mismo, tía."</p></div>
+    <div class="retencion"><b>Qué mantiene la atención</b><p>El hook selecciona a la clienta perfecta desde el segundo cero: pecho grande + espalda al aire + pezoneras que se caen. Cualquiera que se haya visto en esa situación no puede dejar de ver el resto. Y el "a mí me pasaba lo mismo" en tono coloquial baja la guardia, deja claro que no es un anuncio frío.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">REVEAL SOLUCIÓN</span><span class="tramo-time">8-16 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Hasta que descubrí estas: las pezoneras de Curviva. No se marcan, no se caen, no se notan bajo la ropa. Y no te irritan la piel."</p></div>
+    <div class="accion"><b>Acción</b><p>Muestra las pezoneras en la mano, plano cerrado con luz bonita. Gira una para que se vea el material.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">EXPLICACIÓN TÉCNICA</span><span class="tramo-time">16-27 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Son de silicona de grado médico. Se adhieren a tu piel por el contacto con el calor corporal, así que se quedan como una segunda piel. No hacen bulto. No se marcan los bordes."</p></div>
+    <div class="accion"><b>Acción</b><p>Primer plano de la creadora colocándose una: frota entre las manos para calentar y la coloca. Corte a plano del pecho vestido con el vestido de espalda al aire desde el frente: superficie perfectamente lisa, sin marcas de borde.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">RETIRADA + CUIDADO</span><span class="tramo-time">27-37 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Y cuando te las retiras, no dejan ningún adhesivo en la piel. Solo hay que lavarlas con agua y jabón neutro, dejar que se sequen al aire, y volver a colocarles el protector para que no pierdan la forma. Duran meses."</p></div>
+    <div class="accion"><b>Acción</b><p>Tres micro-planos, tres segundos cada uno: (1) se retira una pezonera, se ve la piel sin marca ni residuo. (2) Lavado bajo el grifo con jabón, manos limpiando la silicona. (3) Pezonera colocada en su protector plástico, guardada en el cajón.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag c">CIERRE + CTA A WEB</span><span class="tramo-time">37-42 s</span></div>
+    <div class="voz"><b>Voz</b><p>"El vestido puede. Tú puedes. Encuéntralas aquí abajo."</p></div>
+    <div class="accion"><b>Acción</b><p>Plano final de la creadora con el vestido puesto, girándose de espaldas a cámara para enseñar la espalda al aire limpia. Vuelve a mirar de frente y sonríe. Puede señalar hacia abajo con el dedo o mirar hacia el botón del ad. Congelado 1 segundo con "Curviva" en el subtítulo.</p></div>
+   </div>
+
+   <div class="copy-block">
+    <h5>Descripción del post</h5>
+    <div class="copy-text">Tienes pecho, quieres ponerte este vestido con la espalda al aire, y todas las pezoneras que has probado se te caen. A mí me pasaba lo mismo. El vestido puede. Tú puedes. Descúbrelas aquí abajo.</div>
+    <p class="hashtags">#espaldaalaire #pezoneras #curviva #vestidoinvitada</p>
+   </div>
+  </div>
+ </div>
+
+</section>
+
+<!-- ============ MOMENTO 3 ============ -->
+<section id="m3" style="--lc:#2FC98F">
+ <div class="level-head"><span class="lv-mark"></span><h2>Momento 3 · Compara soluciones</h2></div>
+ <p class="level-intro">Cuatro formatos para mujeres que están comparando opciones y decidiendo. El objetivo aquí es demostrar por qué Curviva y no la alternativa barata: mecanismo con nombre, cara a cara y enseñar a usarlo bien.</p>
+
+ <!-- ========= GUION 10 ========= -->
+ <div class="guion" style="border-color:var(--mint);">
+  <div class="guion-head" style="background:rgba(118,239,177,.08);">
+   <h3><span class="guion-num">10</span>Comparación directa</h3>
+   <span class="chip" style="--c:#2FC98F">Compara soluciones</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(118,239,177,.10); border:1px solid var(--mint); border-radius:10px; padding:14px 18px; margin-bottom:20px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:20px; line-height:1;">🔄</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mint); margin-bottom:6px; font-weight:700;">Ya está programado para orgánico · reutilizar como ad</p>
+     <p style="font-size:14px; color:#dde5e0;">Este vídeo ya está bajado a nivel guion en el <b>planificador orgánico de Curviva</b>, con fecha de publicación el <b>martes 15 de julio</b> (Instagram + TikTok). Curviva lo va a rodar igualmente. <b>Aprovechadlo también como ad</b>: mismo guion, mismo rodaje, mismo material. No hace falta grabar nada nuevo para cubrir este formato.</p>
+    </div>
+   </div>
+
+   <div class="guion-meta">
+    <div>Idea base<b>3 cosas a tener en cuenta al elegir tus pezoneras</b></div>
+    <div>Duración<b>42 segundos</b></div>
+    <div>Perfil<b>Laia a cámara</b></div>
+    <div>Título pantalla<b>3 COSAS AL ELEGIR</b></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag h">HOOK</span><span class="tramo-time">0-5 s</span></div>
+    <div class="accion"><b>Acción</b><p>Laia a cámara, tono directo y educativo.</p></div>
+    <div class="voz"><b>Voz de Laia</b><p>"3 cosas que tienes que tener en cuenta a la hora de elegir tus pezoneras."</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">PUNTO 1 · TALLA</span><span class="tramo-time">5-15 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Uno: la talla. Porque sí, las pezoneras tienen tallas. Y no, no son solo para pechos pequeños. En Curviva hay tres tallas distintas para que tapen bien tanto si tienes poco pecho como si tienes mucho. Elige la que vaya con la tuya."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a b-roll: mostrar las 3 tallas de pezoneras juntas, en la mano o sobre superficie neutra. Se ve claramente la diferencia de tamaño.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">PUNTO 2 · TIPO SEGÚN ESCOTE</span><span class="tramo-time">15-25 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Dos: con qué ropa la vas a usar. Hay dos tipos: las redondas y las triangulares. Las redondas van bien con camisetas, tops ajustados y escotes discretos. Las triangulares están pensadas para escotes en V o más pronunciados."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a b-roll: mostrar una pezonera redonda al lado de una triangular. Después, dos micro-planos: una camiseta blanca ajustada + un vestido con escote en V.</p></div>
+    <div class="retencion"><b>Qué mantiene la atención</b><p>La estructura de "3 cosas" con demo visual en cada punto retiene por curiosidad de guía práctica. Quien está comparando opciones ya se ha enganchado en el hook y no se va hasta oír los 3.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">PUNTO 3 · TONO DE PIEL</span><span class="tramo-time">25-35 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Y tres, muy importante: el tono. Hay diferentes colores para que combinen con tu piel y queden completamente disimulados bajo la ropa clara. Elige el que más se parezca al tuyo, si no, se van a ver."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a b-roll: mostrar los distintos tonos disponibles del producto, uno al lado del otro sobre una superficie neutra. Después, cerrar con una foto de camiseta blanca puesta donde no se vea el producto.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag c">CIERRE + CTA A WEB</span><span class="tramo-time">35-42 s</span></div>
+    <div class="voz"><b>Voz</b><p>"¿No sabes cuál es la tuya? Toca aquí abajo y encuentra la perfecta para ti."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a cámara, sonrisa cómplice. Puede señalar hacia abajo con el dedo o mirar hacia el botón del ad. Congelado 1 segundo con "Curviva" en el subtítulo.</p></div>
+   </div>
+
+   <div style="background:rgba(255,209,102,.06); border:1px solid rgba(255,209,102,.25); border-radius:10px; padding:14px 18px; margin-top:14px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:18px; line-height:1;">💡</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--h); margin-bottom:6px; font-weight:700;">Diferencia con la versión orgánica</p>
+     <p style="font-size:14px; color:#dde5e0;">La versión orgánica cierra con <b>"Si necesitas ayuda para elegir la tuya, comenta CURVIVA y te ayudo yo con tu caso"</b>. En el <b>orgánico funciona</b> porque la ayuda personalizada por DM tras la keyword es un asset del perfil. Como <b>ad en Momento 3</b> (audiencia comparando y a punto de decidir), dirigimos directo a la web: el botón del ad sustituye la conversación por DM. Es la primera vez en el embudo que sí queremos convertir.</p>
+    </div>
+   </div>
+
+   <div class="copy-block">
+    <h5>Descripción del post (versión ad, distinta al orgánico)</h5>
+    <div class="copy-text">3 cosas que tienes que tener en cuenta al elegir tus pezoneras: talla, tipo según escote y tono de piel. Toca aquí abajo y encuentra la perfecta para ti.</div>
+    <p class="hashtags">#comoelegir #pezoneras #curviva #guiadetallas</p>
+   </div>
+  </div>
+ </div>
+
+ <!-- ========= GUION 13 ========= -->
+ <div class="guion">
+  <div class="guion-head">
+   <h3><span class="guion-num">13</span>Autoridad y confianza</h3>
+   <span class="chip" style="--c:#2FC98F">Compara soluciones</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(124,196,255,.08); border:1px solid rgba(124,196,255,.35); border-radius:10px; padding:14px 18px; margin-bottom:20px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:18px; line-height:1;">📌</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--c); margin-bottom:6px; font-weight:700;">Nuevo · Puede archivarse para orgánico más adelante</p>
+     <p style="font-size:14px; color:#dde5e0;">Este guion <b>no está en el planificador orgánico</b>, se ha creado desde cero para ads. Formato UGC estilo TikTok, que rinde mucho en creadoras que venden pezoneras. Se puede rodar solo para ads o guardarse el archivo para publicar también en orgánico más adelante si funciona bien.</p>
+    </div>
+   </div>
+
+   <div class="guion-meta">
+    <div>Idea base<b>Comparativa: otras marcas vs Curviva (UGC)</b></div>
+    <div>Duración<b>55-60 segundos</b></div>
+    <div>Perfil<b>Creadora UGC (casting TikTok style)</b></div>
+    <div>Título pantalla<b>NO MÁS PEGAMENTO</b></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag h">HOOK</span><span class="tramo-time">0-6 s</span></div>
+    <div class="accion"><b>Acción</b><p>Primer plano de la creadora despegando dos pezoneras de OTRA marca (las típicas con mucho pegamento). Mueca de dolor real, tira con esfuerzo, se ve el residuo de pegamento en los bordes. Al retirar, la piel debajo queda enrojecida.</p></div>
+    <div class="voz"><b>Voz</b><p>"Yo también usaba estas pezoneras que me irritaban la piel y me hacían daño a la hora de quitármelas."</p></div>
+    <div class="retencion"><b>Qué mantiene la atención</b><p>El dolor real en el segundo cero es lo que hace que este formato UGC funcione en TikTok. Cualquier mujer que haya usado pezoneras con pegamento se reconoce al instante en el hook. La honestidad del "yo también" baja la guardia comercial.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">DESCUBRIMIENTO</span><span class="tramo-time">6-12 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Hasta que descubrí las de Curviva."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a la creadora mostrando las pezoneras de Curviva en la mano, con una sonrisa. Plano cerrado del producto para que se vea la textura.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">DIFERENCIAL 1 · MATERIAL APTO PARA LA PIEL</span><span class="tramo-time">12-22 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Están hechas de silicona de grado médico, la misma que se usa en la piel sensible. Son hipoalergénicas, no irritan, no dejan marcas rojas cuando te las quitas."</p></div>
+    <div class="accion"><b>Acción</b><p>Plano detalle del material: la creadora dobla la silicona, la estira. Después, corte a un plano de ella retirándose una pezonera de Curviva: la piel debajo queda intacta, sin rojeces (contraste directo con el hook).</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">DIFERENCIAL 2 · AGARRE POR CALOR</span><span class="tramo-time">22-32 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Se adhieren por el calor de tu cuerpo, no por pegamento. Las calientas entre las manos, te las colocas, y se quedan como una segunda piel."</p></div>
+    <div class="accion"><b>Acción</b><p>Plano de las manos frotando la pezonera para calentarla. Corte a la creadora colocándosela (jump cut, plano medio, sin enseñar de más). Corte a plano de ella con camiseta blanca ajustada moviéndose: la pezonera queda invisible bajo la ropa.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">DIFERENCIAL 3 · DOS TIPOS SEGÚN OUTFIT</span><span class="tramo-time">32-50 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Y esto es lo mejor: hay dos tipos. Las sin adhesivo, para ropa ajustada al cuerpo, que se quedan puestas solo por el calor. Y las que sí tienen algo de adhesivo, para prendas más sueltas donde necesitas más agarre. Pero con estas, la zona del pezón está libre de pegamento, para proteger la parte más sensible."</p></div>
+    <div class="accion"><b>Acción</b><p>Dos mini-capítulos visuales, ocho segundos cada uno:<br><br>
+    <b>Tipo 1 · Sin adhesivo</b> → creadora con top ajustado + plano cerrado de la pezonera lisa (sin borde adhesivo). Voz reforzada por texto en subtítulo.<br><br>
+    <b>Tipo 2 · Con adhesivo + zona pezón libre</b> → creadora con vestido más suelto o camiseta oversize + plano cenital de la pezonera boca arriba mostrando el círculo central sin pegamento (dedo señalando la zona protegida).</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag c">CIERRE + CTA A WEB</span><span class="tramo-time">50-58 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Ni pegamento en el pezón, ni piel irritada. Elige la tuya aquí abajo."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a la creadora a cámara, sonrisa tranquila. Puede señalar hacia abajo con el dedo o mirar al botón del ad. Congelado 1 segundo con "Curviva" en el subtítulo.</p></div>
+   </div>
+
+   <div class="copy-block">
+    <h5>Descripción del post</h5>
+    <div class="copy-text">Yo también usaba pezoneras que me irritaban la piel. Hasta que descubrí las de Curviva. Silicona de grado médico, agarre por calor y dos tipos según el outfit. Elige la tuya aquí abajo.</div>
+    <p class="hashtags">#pezoneras #curviva #ugc #pielsensible</p>
+   </div>
+  </div>
+ </div>
+
+</section>
+
+<!-- ============ MOMENTO 4 ============ -->
+<section id="m4" style="--lc:#F0A24C">
+ <div class="level-head"><span class="lv-mark"></span><h2>Momento 4 · Ya conoce Curviva</h2></div>
+ <p class="level-intro">Tres formatos para mujeres que ya conocen la marca. Ver el resultado con sus propios ojos, en caras distintas y a través de opiniones reales, es lo que remata la decisión. Aquí sí se puede meter descuento (con cabeza) porque el público ya reconoce el valor.</p>
+
+ <!-- ========= GUION 14 ========= -->
+ <div class="guion">
+  <div class="guion-head">
+   <h3><span class="guion-num">14</span>El efecto transformación</h3>
+   <span class="chip" style="--c:#F0A24C">Ya conoce Curviva</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(124,196,255,.08); border:1px solid rgba(124,196,255,.35); border-radius:10px; padding:14px 18px; margin-bottom:20px; display:flex; gap:14px; align-items:flex-start;">
+    <div style="font-size:18px; line-height:1;">📌</div>
+    <div>
+     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--c); margin-bottom:6px; font-weight:700;">Nuevo · Puede archivarse para orgánico más adelante</p>
+     <p style="font-size:14px; color:#dde5e0;">Este guion <b>no está en el planificador orgánico</b>, se ha creado desde cero para ads. Formato "poniendo a prueba" con las dos formas de pezonera (redonda y triangular) contrastadas contra 3 outfits distintos. Se puede rodar solo para ads o guardarse el archivo para publicar también en orgánico más adelante.</p>
+    </div>
+   </div>
+
+   <div class="guion-meta">
+    <div>Idea base<b>Poniendo a prueba las 2 formas con 3 outfits</b></div>
+    <div>Duración<b>45 segundos</b></div>
+    <div>Perfil<b>Laia a cámara + b-roll outfits</b></div>
+    <div>Título pantalla<b>PONIENDO A PRUEBA</b></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag h">HOOK</span><span class="tramo-time">0-5 s</span></div>
+    <div class="accion"><b>Acción</b><p>Laia a cámara con las dos pezoneras en la mano, una redonda y una triangular. Las muestra bien, gira una en cada mano.</p></div>
+    <div class="voz"><b>Voz de Laia</b><p>"Poniendo a prueba las pezoneras de Curviva con tres outfits distintos. Curviva tiene dos formas: redondas y triangulares. Voy a probar las dos."</p></div>
+    <div class="retencion"><b>Qué mantiene la atención</b><p>El "poniendo a prueba" activa la promesa de resultado. Introducir las dos formas al principio deja claro que va a haber comparación por outfit, algo que quien ya conoce la marca quiere resolver: ¿cuál va con qué?</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">OUTFIT 1 · BIKINI CON TRIANGULARES</span><span class="tramo-time">5-17 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Empiezo con el bikini. Aquí van las triangulares, porque la parte de arriba del bikini también es triangular. Encajan perfectas dentro de la copa. Y al ser silicona, se adhieren al calor del cuerpo, no se mueven ni cuando salto ni cuando me agacho."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a Laia con bikini. Se ve la pezonera triangular colocada bajo la copa (sin enseñar de más). Salto ligero, se agacha, gira una vez. La pezonera no se mueve.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">OUTFIT 2 · ESPALDA AL AIRE CON REDONDAS</span><span class="tramo-time">17-29 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Ahora un vestido con la espalda al aire. Como por delante tiene el escote normal, uso las redondas. Cubren perfecto, y desde delante no se ve nada."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a Laia con vestido de espalda descubierta. Se gira: primero espalda al aire limpia, después de frente el escote se ve liso, sin marcas de borde. Se mueve, camina un paso hacia cámara.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag r">OUTFIT 3 · ESCOTE PROFUNDO CON TRIANGULARES</span><span class="tramo-time">29-40 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Y para acabar, vestido con escote en pico. Otra vez las triangulares, porque siguen el escote hacia abajo sin salirse por los bordes."</p></div>
+    <div class="accion"><b>Acción</b><p>Corte a Laia con vestido de escote profundo. Plano frontal para que se vea que el escote queda perfecto. Gira, mira al espejo, sonríe.</p></div>
+   </div>
+
+   <div class="tramo">
+    <div class="tramo-head"><span class="tag c">CIERRE + CTA A WEB</span><span class="tramo-time">40-45 s</span></div>
+    <div class="voz"><b>Voz</b><p>"Dos formas, tres looks. Y ninguna se mueve. Elige tu combinación aquí abajo."</p></div>
+    <div class="accion"><b>Acción</b><p>Vuelta a Laia con las dos pezoneras en la mano, sonrisa. Puede señalar hacia abajo con el dedo o mirar al botón del ad. Congelado 1 segundo con "Curviva" en el subtítulo.</p></div>
+   </div>
+
+   <div class="copy-block">
+    <h5>Descripción del post</h5>
+    <div class="copy-text">Poniendo a prueba las pezoneras de Curviva con 3 outfits diferentes. Bikini, espalda al aire y escote profundo. Dos formas, tres looks. Elige tu combinación aquí abajo.</div>
+    <p class="hashtags">#pezoneras #curviva #outfitsummer #ponemosaprueba</p>
+   </div>
+  </div>
+ </div>
+
+ <!-- ========= ORIENTACIÓN UGC RESEÑAS ========= -->
+ <div class="guion" style="border-style:dashed; border-color:#F0A24C;">
+  <div class="guion-head" style="background:rgba(240,162,76,.06);">
+   <h3><span class="guion-num" style="background:rgba(240,162,76,.18); color:#F0A24C;">15</span>Reseñas de creadoras UGC</h3>
+   <span class="chip" style="--c:#F0A24C">Ya conoce Curviva</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(240,162,76,.08); border:1px solid rgba(240,162,76,.35); border-radius:10px; padding:16px 20px; margin-bottom:20px;">
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#F0A24C; margin-bottom:8px; font-weight:700;">Sin guion · Contenido UGC orgánico</p>
+    <p style="font-size:14px; color:#dde5e0;">Para este formato <b>no bajamos guion cerrado</b>. La fuerza está en la espontaneidad: clientas o creadoras UGC haciendo reseñas propias del producto, en su estilo, sin script. Cuanto más se parezca a un vídeo que subirían a su cuenta, más rinde como ad.</p>
+   </div>
+
+   <div class="guion-meta">
+    <div>Idea base<b>Reseñas UGC de clientas o creadoras</b></div>
+    <div>Duración<b>20-45 segundos por reseña</b></div>
+    <div>Perfil<b>Creadoras UGC · clientas reales</b></div>
+    <div>Formato<b>Vertical 9:16 · estilo TikTok</b></div>
+   </div>
+
+   <div style="padding:20px 0;">
+    <h4 style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#F0A24C; margin-bottom:12px;">Qué pedirle a la creadora</h4>
+    <ul style="margin-left:20px; margin-bottom:20px;">
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Que enseñe el producto</b> tal cual lo recibe (unboxing simple si aplica, packaging en mano).</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Que dé su opinión honesta:</b> primeras sensaciones, qué le sorprende, qué no esperaba. Sin script, con sus palabras.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Que se lo pruebe con un outfit real</b> suyo, no montado para el vídeo.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Que hable a cámara como hablaría a una amiga.</b> Nada de "poses de influencer".</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Que mencione al menos un beneficio concreto</b> (aguante, comodidad, invisibilidad, piel).</li>
+    </ul>
+
+    <h4 style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#F0A24C; margin-bottom:12px;">Casting recomendado</h4>
+    <ul style="margin-left:20px; margin-bottom:20px;">
+     <li style="margin-bottom:8px; color:#dde5e0;">Diversidad de <b>edades, cuerpos y tonos de piel</b>. No repetir el mismo perfil dos veces.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;">Creadoras con <b>audiencia real y engagement propio</b>, no solo cuentas grandes.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;">Clientas de Curviva que ya han comprado y usan el producto en su día a día → los mejores reseñadores.</li>
+    </ul>
+
+    <h4 style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#F0A24C; margin-bottom:12px;">Uso como ads</h4>
+    <ul style="margin-left:20px;">
+     <li style="margin-bottom:8px; color:#dde5e0;">Rotar varias reseñas UGC en paralelo en Ads Manager. El formato que mejor rinde varía por audiencia.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;">Cierre del ad → botón a web para elegir el producto ("Descúbrelas aquí abajo" o similar). La creadora puede añadirlo o se pone en la edición.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;">Autorización de imagen firmada antes de lanzar el ad.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+
+</section>
+
+<!-- ============ MOMENTO 5 ============ -->
+<section id="m5" style="--lc:#F07385">
+ <div class="level-head"><span class="lv-mark"></span><h2>Momento 5 · Lista para comprar</h2></div>
+ <p class="level-intro">Para las mujeres que ya conocen la marca y están a un empujón de comprar (o vieron el producto y no dieron el paso). Aquí no bajamos guiones de vídeo cerrados: recomendamos <b>otro tipo de creativo</b> más directo, orientado a conversión.</p>
+
+ <!-- ========= ORIENTACIÓN MOMENTO 5 ========= -->
+ <div class="guion" style="border-style:dashed; border-color:#F07385;">
+  <div class="guion-head" style="background:rgba(240,115,133,.06);">
+   <h3><span class="guion-num" style="background:rgba(240,115,133,.18); color:#F07385;">✱</span>Orientación · Formato foto + oferta</h3>
+   <span class="chip" style="--c:#F07385">Lista para comprar</span>
+  </div>
+  <div class="guion-body">
+
+   <div style="background:rgba(240,115,133,.08); border:1px solid rgba(240,115,133,.35); border-radius:10px; padding:16px 20px; margin-bottom:20px;">
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#F07385; margin-bottom:8px; font-weight:700;">Sin guion · Recomendación estratégica</p>
+    <p style="font-size:14px; color:#dde5e0;">A esta altura del embudo, el vídeo educativo pierde eficiencia. La audiencia ya conoce el producto: <b>lo que falta es un empujón</b>. Recomendamos priorizar <b>formato foto</b> (mucho más rápido de producir, más barato en CPM y con conversión directa) y reservar el vídeo para <b>mostrar oferta, urgencia o pack</b>.</p>
+   </div>
+
+   <div style="padding:12px 0;">
+    <h4 style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#F07385; margin-bottom:12px;">Formato foto · lo principal</h4>
+    <ul style="margin-left:20px; margin-bottom:24px;">
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Producto en detalle</b> con precio visible y descuento marcado si aplica. Fondo limpio, estilo ecommerce.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Foto de resultado</b> (mujer con outfit + producto puesto) con overlay del descuento o del pack.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Pack completo</b> con todos los productos incluidos y precio antes/ahora bien contrastado.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Copy directo</b>: "Pack completo desde X€", "Últimas unidades", "Solo hasta el domingo".</li>
+     <li style="margin-bottom:8px; color:#dde5e0;">Objetivo de campaña <b>conversión</b>, no interacción. Aquí sí se optimiza por compra.</li>
+    </ul>
+
+    <h4 style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#F07385; margin-bottom:12px;">Vídeo · cuándo sí tiene sentido</h4>
+    <ul style="margin-left:20px; margin-bottom:24px;">
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Anunciar un pack nuevo:</b> vídeo corto mostrando qué incluye + precio total + ahorro respecto a comprarlo suelto.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Descuento con fecha límite:</b> vídeo de 15-20 s con la fecha bien clara y el precio antes/ahora.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Restock o vuelve el más vendido:</b> vídeo con la captura del "agotado" en la web + fecha de vuelta + link al aviso.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Duración corta:</b> 15-20 s máximo. Aquí la audiencia no necesita historia, necesita el empujón.</li>
+    </ul>
+
+    <h4 style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#F07385; margin-bottom:12px;">Estructura general del creativo (foto o vídeo)</h4>
+    <ul style="margin-left:20px; margin-bottom:24px;">
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Producto claro</b> desde el primer segundo.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Precio visible</b>: antes / ahora, o precio del pack.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Motivo por el que actuar ahora</b>: fecha límite, pack, restock, últimas unidades.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>CTA a web</b>: "Cómpralo ahora", "Aprovecha el pack", "Reserva el tuyo".</li>
+    </ul>
+
+    <h4 style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#F07385; margin-bottom:12px;">Ad set recomendado</h4>
+    <ul style="margin-left:20px;">
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Retargeting:</b> quien visitó la web, quien vio los ads de Momentos 3-4 al 75%+, carrito abandonado.</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Lookalike:</b> de compradoras existentes (audiencia caliente).</li>
+     <li style="margin-bottom:8px; color:#dde5e0;"><b>Objetivo:</b> compra directa. Métrica clave: ROAS.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+
+</section>
+
+<footer class="wrap">
+ <p>NAVY MARKETING · Curviva · Sistema de anuncios · Julio 2026</p>
+ <p style="margin-top:8px; opacity:.6;">Momentos 1-4 con guiones cerrados. Momento 5 con orientación estratégica sobre formato foto y ofertas.</p>
+</footer>
+
+</main>
+</body>
+</html>
